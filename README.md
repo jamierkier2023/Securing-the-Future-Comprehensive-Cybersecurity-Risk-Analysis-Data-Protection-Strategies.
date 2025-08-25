@@ -4,120 +4,149 @@ This is a  market analysis, by way of EDA exploratory data analysis for an energ
 # Cybersecurity Risk Analysis Project
 
 ## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Threats by Severity](#threats-by-severity)
+3. [Traffic Volume by Type](#traffic-volume-by-type)
+4. [Distribution of Threat Types](#distribution-of-threat-types)
+5. [Failed MFA Attempts](#failed-mfa-attempts)
+6. [Encryption Algorithm Usage](#encryption-algorithm-usage)
+7. [Trend of High & Critical Threats](#trend-of-high--critical-threats)
+8. [Insights & Recommendations](#insights--recommendations)
+9. [Conclusion](#conclusion)
 
-1.  [Project Overview](#project-overview)
-2.  [Problem Statement](#problem-statement)
-3.  [SQL Code](#sql-code)
-4.  [Visual Storyline (PNG Files)](#visual-storyline-png-files)
-5.  [Insights](#insights)
-6.  [Recommendations](#recommendations)
-7.  [Conclusion](#conclusion)
-
-------------------------------------------------------------------------
+---
 
 ## Project Overview
+This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization.  
+It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.
 
-This project demonstrates the use of **PostgreSQL** for analyzing
-**cybersecurity risks** faced by a mid-sized IT company (**LOCK Co.**).\
-The goal is to identify vulnerabilities, classify threats, and recommend
-measures to protect sensitive data and infrastructure.
+**Context Screenshots**  
+![Project Slide 1](./Screenshot%202025-08-23%20163711.png)  
+![Project Slide 2](./Screenshot%202025-08-23%20163902.png)  
+![Project Slide 3](./Screenshot%202025-08-23%20164100.png)  
+![Project Slide 4](./Screenshot%202025-08-23%20164213.png)  
+![Project Slide 5](./Screenshot%202025-08-23%20164413.png)
 
-------------------------------------------------------------------------
+---
 
-## Problem Statement
+## Threats by Severity
+**SQL Query:**【30†source】
+```sql
+-- Categorize and summarize severity levels
+-- (Assumes Severity_Category already derived from Severity_Level)
+SELECT 
+    SUM(CASE WHEN Severity_Category = 'High Risk' THEN 1 ELSE 0 END) as High_Risk_Count,
+    SUM(CASE WHEN Severity_Category = 'Low Risk' THEN 1 ELSE 0 END) as Low_Risk_Count,
+    SUM(CASE WHEN Severity_Category = 'Medium Risk' THEN 1 ELSE 0 END) as Medium_Risk_Count
+FROM network_logs_2;
+```
+**Visualization:**  
+![Threats by Severity](./01_severity_distribution.png)
 
-**LOCK Co.** faces cybersecurity challenges including:\
-- Rising **high-risk threats** (malware, phishing, DDoS).\
-- **Failed MFA attempts** from suspicious IPs.\
-- Inconsistent use of **encryption algorithms** for confidential data.\
-- Higher **outgoing traffic volumes**, suggesting possible data
-exfiltration.\
-- Need for compliance with cybersecurity regulations and maintaining
-client trust.
+---
 
-------------------------------------------------------------------------
+## Traffic Volume by Type
+**SQL Query:**【30†source】
+```sql
+-- Total data volume across traffic categories
+SELECT Traffic_Category, SUM(Data_Volume) as Total_Data_Volume 
+FROM network_logs
+GROUP BY Traffic_Category 
+ORDER BY Total_Data_Volume DESC;
+```
+**Visualization:**  
+![Traffic Volume by Type](./02_traffic_distribution.png)
 
-## SQL Code
+---
 
-The SQL queries include:\
-- **Data Cleaning & Preparation**: Removing duplicates, handling nulls,
-standardizing encryption values.\
-- **Data Transformation**: Categorizing threats by severity, traffic by
-type.\
-- **Exploratory Analysis**: Threat distributions, MFA failures, firewall
-effectiveness.\
-- **Trend Analysis**: Tracking high/critical events over time.
+## Distribution of Threat Types
+**SQL Query:**【30†source】
+```sql
+-- Count events by threat type
+SELECT B.Threat_Type, COUNT(*) as Threat_Count
+FROM network_logs A
+JOIN network_logs_2 B ON A.ID = B.Linked_ID
+GROUP BY B.Threat_Type
+ORDER BY Threat_Count DESC;
+```
+**Visualization:**  
+![Distribution of Threat Types](./03_threat_types.png)
 
-📄 [Full SQL Code](./Cybersecurity_sql_query.sql)
+---
 
-------------------------------------------------------------------------
+## Failed MFA Attempts
+**SQL Query:**【30†source】
+```sql
+-- Rank sources by failed MFA attempts
+SELECT 
+    Source_IP, 
+    COUNT(ID) as Failed_Attempts
+FROM network_logs
+WHERE MFA_Status = 'Failed'
+GROUP BY Source_IP
+ORDER BY Failed_Attempts DESC;
+```
+**Visualization:**  
+![Failed MFA Attempts](./04_failed_mfa.png)
 
-## Visual Storyline (PNG Files)
+---
 
-The following PNGs present the executive summary analysis:
+## Encryption Algorithm Usage
+**SQL Query:**【30†source】
+```sql
+-- Frequency of encryption algorithms for sensitive data
+SELECT A.Encryption_Algorithm, COUNT(*) as Frequency
+FROM network_logs A
+WHERE A.Data_Classification IN ('Confidential', 'Highly Confidential')
+GROUP BY A.Encryption_Algorithm
+ORDER BY Frequency DESC;
+```
+**Visualization:**  
+![Encryption Algorithm Usage](./05_encryption_usage.png)
 
-1.  ![Severity Distribution](./01_severity_distribution.png)\
-    Distribution of **High, Medium, and Low risk threats**.
+---
 
-2.  ![Traffic Distribution](./02_traffic_distribution.png)\
-    **Incoming vs Outgoing traffic** to assess attack surface.
+## Trend of High & Critical Threats
+**SQL Query:**【30†source】
+```sql
+-- Monthly trend of high/critical events
+SELECT DATE_TRUNC('month', A.Timestamp) AS Month, COUNT(*) as Critical_High_Count
+FROM network_logs A
+JOIN network_logs_2 B ON A.ID = B.Linked_ID
+WHERE B.Severity_Level IN ('High', 'Critical')
+GROUP BY DATE_TRUNC('month', A.Timestamp)
+ORDER BY Month;
+```
+**Visualization:**  
+![Trend of High & Critical Threats](./06_trend_high_critical.png)
 
-3.  ![Threat Types](./03_threat_types.png)\
-    Breakdown of **Malware, DDoS, Phishing, Insider Threats**.
+---
 
-4.  ![Failed MFA Attempts](./04_failed_mfa.png)\
-    **Top risky IPs** associated with failed MFA login attempts.
+## Insights & Recommendations
+### Key Insights
+- **Severity:** Medium-risk threats are most frequent, with **high-risk events trending upward**.
+- **Traffic:** **Outgoing traffic > Incoming**, suggesting potential **data exfiltration** vectors.
+- **Threat Mix:** Malware and DDoS dominate event volume, with notable **phishing** presence.
+- **Authentication:** **Failed MFA** attempts cluster around a few IPs → likely **targeted brute-force**.
+- **Encryption:** Some confidential data uses **weak/unknown algorithms**, creating exposure.
 
-5.  ![Encryption Usage](./05_encryption_usage.png)\
-    Algorithms applied to protect confidential data (**AES-256, AES-128,
-    DES, Unknown**).
+### Recommendations (Actionable)
+1. **Harden Authentication**: Enforce stricter MFA policies; implement rate-limiting and IP blacklisting; alert on abnormal login patterns.
+2. **Standardize Encryption**: Mandate **AES-256** for all confidential/highly confidential data; audit and remediate “Unknown” algorithms.
+3. **Monitor Exfiltration**: Deploy egress anomaly detection (DLP rules, sudden spikes, unusual destinations) and block suspicious flows.
+4. **Bolster Endpoint & Network Security**: EDR + IDS/IPS tuning against **Malware/DDoS/Phishing** playbooks; sandbox suspicious payloads.
+5. **Firewall Rule Hygiene**: Review high-trigger rules; convert noisy allows to **least-privilege** denies where feasible.
+6. **Incident Response Readiness**: Establish runbooks for **High/Critical** events with defined RTO/RPO; run tabletop exercises quarterly.
 
-6.  ![Threat Trends](./06_trend_high_critical.png)\
-    **High and Critical Threat Trends** over time.
+**Operational KPIs to Track**
+- Mean time to detect/respond (MTTD/MTTR) for high/critical incidents  
+- % of confidential data covered by **AES-256**  
+- MFA failure rate by source and **block rate** for repeated offenders  
+- **Outbound** data volume anomalies (Z-score/Sigma rules)  
+- Patch/EDR policy compliance rates
 
-------------------------------------------------------------------------
-
-## Insights
-
-1.  **Medium-risk threats** are most frequent, but **high-risk events
-    are steadily rising**.\
-2.  **Failed MFA attempts** are heavily concentrated among a few IPs,
-    indicating **targeted attacks**.\
-3.  Encryption practices are inconsistent, with some confidential data
-    using **weak or unknown algorithms**.\
-4.  Outgoing traffic volume exceeds incoming traffic, suggesting
-    potential **data exfiltration risk**.\
-5.  Malware and DDoS are the most **common threat categories**,
-    requiring stronger defensive measures.
-
-------------------------------------------------------------------------
-
-## Recommendations
-
-✅ **Strengthen Authentication:** Enforce stricter MFA policies, block
-suspicious IPs, and monitor anomalies.\
-✅ **Upgrade Encryption:** Mandate **AES-256** for all sensitive and
-confidential data.\
-✅ **Improve Monitoring:** Deploy intrusion detection systems for
-unusual **outbound traffic**.\
-✅ **Phishing Defense:** Conduct **regular awareness training** for
-employees.\
-✅ **Firewall Effectiveness:** Continuously review rules to block
-repeated attack vectors.\
-✅ **Incident Response:** Develop a **rapid response plan** for critical
-and high-severity incidents.
-
-------------------------------------------------------------------------
+---
 
 ## Conclusion
-
-By leveraging SQL queries and visual analytics, this project highlights
-critical cybersecurity risks and provides actionable strategies to
-mitigate them.\
-Implementing these recommendations will help **LOCK Co.**:\
-- Protect sensitive data\
-- Maintain compliance\
-- Enhance client trust\
-- Strengthen overall security posture
-
-------------------------------------------------------------------------
+This self-contained README ties **SQL evidence** to **visual outcomes** and a prescriptive plan.  
+Executing the recommendations will reduce risk exposure, improve compliance, and strengthen client trust.
