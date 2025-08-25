@@ -4,22 +4,14 @@ This is a  market analysis, by way of EDA exploratory data analysis for an energ
 # Cybersecurity Risk Analysis Project
 
 ## Project Overview
-This project, **Cybersecurity Risk Analysis: Analyze cybersecurity risks for a company and recommend measures to protect sensitive data and infrastructure**, is designed at an **intermediate level** of data analytics.  
+This project, **Cybersecurity Risk Analysis: Analyze cybersecurity risks for a company and recommend measures to protect sensitive data and infrastructure**, is designed at an **intermediate level** of data analytics. This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization.  
+It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.  
 The primary tool used is **PostgreSQL**, focusing on **cybersecurity analysis** to evaluate risks and propose actionable security improvements.
+
 ## Specialization & Tools
 - **Specialization:** Cybersecurity Analysis  
 - **Business Focus:** General  
 - **Primary Tool:** PostgreSQL  
-
----
-
-## Project Learning Opportunities
-Through this project, learners will gain experience in:  
-- Writing and optimizing **SQL queries**  
-- Performing **data exploration, manipulation, and transformation**  
-- Conducting **exploratory data analysis** on cybersecurity datasets  
-- Developing **critical risk analysis skills** to identify and mitigate security vulnerabilities  
-
 ---
 
 ## Learning Skills Developed
@@ -29,7 +21,6 @@ Through this project, learners will gain experience in:
 - Exploratory Data Analysis  
 
 ---
-
 ## Company Context (LOCK Co.)
 LOCK Co. is a **mid-sized technology company** specializing in **software development and IT services**.  
 - Founded in **2010**, now employing ~100 staff.  
@@ -45,7 +36,6 @@ Despite its growth, LOCK Co. faces significant cybersecurity threats, including:
 - **Increasing cyberattack frequency targeting mid-sized businesses**  
 
 ---
-
 ## Significance of the Project
 The project is critical due to several strategic concerns:  
 - **Protection of Sensitive Data** – safeguard client data to avoid financial loss & reputational harm.  
@@ -55,7 +45,6 @@ The project is critical due to several strategic concerns:
 - **Reputation Management** – strengthening LOCK Co.’s image in a competitive industry.  
 
 ---
-
 ## Project Objectives
 The cybersecurity risk analysis aims to:  
 1. Conduct a **comprehensive risk assessment** to identify vulnerabilities and threats.  
@@ -65,7 +54,6 @@ The cybersecurity risk analysis aims to:
 5. Enhance **incident response and recovery capabilities**.  
 
 ---
-
 ## Methodology
 The project methodology is structured around SQL-based analytics:  
 1. **Data Aggregation & Cleaning** – Using SQL queries to clean and prepare data for analysis.  
@@ -73,11 +61,6 @@ The project methodology is structured around SQL-based analytics:
 3. **Statistical Analysis** – Applying SQL functions for insight generation.  
 4. **Documentation & Review** – Capturing findings, reviewing outcomes, and evaluating solutions with SQL evidence.  
 
----
-This project offers hands-on experience in applying **SQL analytics to cybersecurity problems**, contextualized within a real-world company scenario. By the end, participants will be able to:  
-- Identify risks in organizational cybersecurity data  
-- Propose practical, SQL-backed security measures  
-- Demonstrate critical analytical and compliance-focused thinking for modern businesses 
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Threats by Severity](#threats-by-severity)
@@ -90,13 +73,7 @@ This project offers hands-on experience in applying **SQL analytics to cybersecu
 9. [Conclusion](#conclusion)
 
 ---
-
-## Project Overview
-This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization.  
-It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.
-
 ---
-
 ## Threats by Severity
 **SQL Query:**【30†source】
 ```sql
