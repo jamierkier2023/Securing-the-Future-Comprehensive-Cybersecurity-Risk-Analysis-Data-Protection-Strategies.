@@ -20,13 +20,6 @@ This is a  market analysis, by way of EDA exploratory data analysis for an energ
 This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization.  
 It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.
 
-**Context Screenshots**  
-![Project Slide 1](./Screenshot%202025-08-23%20163711.png)  
-![Project Slide 2](./Screenshot%202025-08-23%20163902.png)  
-![Project Slide 3](./Screenshot%202025-08-23%20164100.png)  
-![Project Slide 4](./Screenshot%202025-08-23%20164213.png)  
-![Project Slide 5](./Screenshot%202025-08-23%20164413.png)
-
 ---
 
 ## Threats by Severity
@@ -41,7 +34,8 @@ SELECT
 FROM network_logs_2;
 ```
 **Visualization:**  
-![Threats by Severity](./01_severity_distribution.png)
+<img width="1200" height="800" alt="01_severity_distribution" src="https://github.com/user-attachments/assets/3cbb1ad6-596b-47f2-ad5a-8208f88f2ce9" />
+
 
 ---
 
