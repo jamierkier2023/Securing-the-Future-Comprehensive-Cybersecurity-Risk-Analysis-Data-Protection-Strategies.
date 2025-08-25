@@ -49,7 +49,8 @@ GROUP BY Traffic_Category
 ORDER BY Total_Data_Volume DESC;
 ```
 **Visualization:**  
-![Traffic Volume by Type](./02_traffic_distribution.png)
+<img width="1200" height="800" alt="02_traffic_distribution" src="https://github.com/user-attachments/assets/93653d58-b017-43e3-b28d-3aafb6382be2" />
+
 
 ---
 
@@ -64,7 +65,8 @@ GROUP BY B.Threat_Type
 ORDER BY Threat_Count DESC;
 ```
 **Visualization:**  
-![Distribution of Threat Types](./03_threat_types.png)
+<img width="1200" height="800" alt="03_threat_types" src="https://github.com/user-attachments/assets/29cdd3c7-4b85-40b5-9110-324b59073b1b" />
+
 
 ---
 
@@ -81,7 +83,8 @@ GROUP BY Source_IP
 ORDER BY Failed_Attempts DESC;
 ```
 **Visualization:**  
-![Failed MFA Attempts](./04_failed_mfa.png)
+<img width="1200" height="800" alt="04_failed_mfa" src="https://github.com/user-attachments/assets/39097b4a-b7d0-4e00-92e6-cae3d6069a60" />
+
 
 ---
 
@@ -96,7 +99,8 @@ GROUP BY A.Encryption_Algorithm
 ORDER BY Frequency DESC;
 ```
 **Visualization:**  
-![Encryption Algorithm Usage](./05_encryption_usage.png)
+<img width="1200" height="800" alt="05_encryption_usage" src="https://github.com/user-attachments/assets/92ad7a02-53a5-4678-8852-5b2e249416cb" />
+
 
 ---
 
@@ -112,7 +116,8 @@ GROUP BY DATE_TRUNC('month', A.Timestamp)
 ORDER BY Month;
 ```
 **Visualization:**  
-![Trend of High & Critical Threats](./06_trend_high_critical.png)
+<img width="1200" height="800" alt="06_trend_high_critical" src="https://github.com/user-attachments/assets/6ca26f03-22f8-4b2d-8c4a-66a9206edfbc" />
+
 
 ---
 
