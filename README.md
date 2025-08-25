@@ -5,9 +5,9 @@ This is a  market analysis, by way of EDA exploratory data analysis for an energ
 
 ## Project Overview
 This project, **Cybersecurity Risk Analysis: Analyze cybersecurity risks for a company and recommend measures to protect sensitive data and infrastructure**, is designed at 
-an **intermediate level** of data analytics. This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization.
-It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.  
-The primary tool used is **PostgreSQL**, focusing on **cybersecurity analysis** to evaluate risks and propose actionable security improvements.
+an **intermediate level** of data analytics. This project analyzes **LOCK Co.’s cybersecurity risks** using SQL queries and data visualization. It aims to detect vulnerabilities, assess threats, and provide actionable recommendations to protect sensitive data, ensure compliance, and maintain client trust.  
+
+The primary tool used is **PostgreSQL**, focusing on **Exploratory Data Analysis** to evaluate risks and propose actionable security improvements.
 
 ## Specialization & Tools
 - **Specialization:** Cybersecurity Analysis  
