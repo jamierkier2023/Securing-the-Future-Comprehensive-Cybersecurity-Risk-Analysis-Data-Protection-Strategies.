@@ -1,2 +1,2 @@
-# Securing-the-Future-Comprehensive-Cybersecurity-Risk-Analysis-Data-Protection-Strategies.
+# Securing-the-Future: Cybersecurity-Risk-Analysis-Data-Protection-Strategies Analysis
 This is a  market analysis, by way of EDA exploratory data analysis for an energy business looking for entry and exit strategies. 
